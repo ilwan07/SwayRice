@@ -8,13 +8,14 @@
 
 general {
         colors = true
+        color_separator = "#000000"
         color_good = "#00FF00"
         color_degraded = "#FF8000"
         color_bad = "#FF0000"
-        interval = 5
+        interval = 1
+        output_format = "i3bar"
 }
 
-order += "ip"
 order += "ethernet _first_"
 order += "wireless _first_"
 order += "disk /"
@@ -27,13 +28,14 @@ ethernet _first_ {
         format_down = "󰈂"
 }
 
-wireless _first_ {
-        format_up = "󰖩 %essid as %ip"
-        format_down = "󰖪"
-}
+# Uncomment if using wifi instead of ethernet
+#wireless _first_ {
+#        format_up = "󰖩 %essid as %ip"
+#        format_down = "󰖪"
+#}
 
 disk "/" {
-        format = "%free / %total"
+        format = " %free / %total"
         prefix_type = "custom"
         threshold_type = "percentage_free"
         low_threshold = "10"
