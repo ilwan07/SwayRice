@@ -8,34 +8,35 @@
 
 general {
         colors = true
+        color_good = "#00FF00"
+        color_degraded = "#FF8000"
+        color_bad = "#FF0000"
         interval = 5
 }
 
-order += "ipv6"
-order += "wireless _first_"
+order += "ip"
 order += "ethernet _first_"
-order += "battery all"
+order += "wireless _first_"
 order += "disk /"
 order += "load"
 order += "memory"
 order += "tztime local"
 
-wireless _first_ {
-        format_up = "W: (%quality at %essid) %ip"
-        format_down = "W: down"
-}
-
 ethernet _first_ {
-        format_up = "E: %ip (%speed)"
-        format_down = "E: down"
+        format_up = "󰈀 %ip"
+        format_down = "󰈂"
 }
 
-battery all {
-        format = "%status %percentage %remaining"
+wireless _first_ {
+        format_up = "󰖩 %essid as %ip"
+        format_down = "󰖪"
 }
 
 disk "/" {
-        format = "%avail"
+        format = "%free / %total"
+        prefix_type = "custom"
+        threshold_type = "percentage_free"
+        low_threshold = "10"
 }
 
 load {
